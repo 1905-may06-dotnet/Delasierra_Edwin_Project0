@@ -9,6 +9,7 @@ namespace PizzaBox.Client
     class Client
     {
         private Users currentUser;
+        private Location currentLocation;
         private Crud db = new Crud();
         public void CreateNewUser(string name, string pw)
         {
@@ -40,33 +41,70 @@ namespace PizzaBox.Client
             {
                 if (u.Username == name && u.Password == pw)
                 {
-                    SetCurrentUser(u);
+                    SetCurrentUser(u.Username);
                     return true;
                 }
             }
             return false;
-            /*
-            foreach (KeyValuePair<string, User> u in userBase)
-            {
-                if (u.Key == name && u.Value.password == pw)
-                    return true;
-            }
-            return false;*/
-        }
-
-        public void AddLocation(int storeID, string name)
-        {
-            
         }
 
         public void PrintLocations()
         {
-            
+            var locations = db.GetLocations();
+            int i = 1;
+            foreach (var loc in locations)
+            {
+                Console.WriteLine(i);
+                Console.WriteLine($"Location ID: {loc.Id}");
+                Console.WriteLine(loc.Name);
+                Console.WriteLine(loc.Street1);
+                Console.WriteLine(loc.City);
+                Console.WriteLine(loc.State);
+                Console.WriteLine(loc.Zipcode);
+                Console.WriteLine();
+                ++i;
+            }
         }
 
-        public void SetCurrentUser(Users person)
+        public void SetCurrentLocation(int index)
         {
-            currentUser = person;
+            var locations = db.GetLocations();
+            currentLocation = locations[index - 1];
+            //currentLocation = db.GetLocation(id);
+        }
+
+        public Location GetCurrentLocation()
+        {
+            return currentLocation;
+        }
+
+        public void SetCurrentUser(string name)
+        {
+            currentUser = db.GetUser(name);
+        }
+
+        public Users GetCurrentUser()
+        {
+            return currentUser;
+        }
+
+        public void PrintToppings()
+        {
+            var toppings = db.GetToppings();
+            foreach (var t in toppings)
+                Console.WriteLine(t.Id + ". " + t.Name);
+        }
+
+        public void PrintSelectedToppings(List<int> tops)
+        {
+            var toppings = db.GetToppings();
+            int i = 0;
+            Console.WriteLine("Toppings selected: ");
+            foreach (var t in toppings)
+            {
+                if (tops[i] == t.Id)
+                    Console.Write(t.Name + " ");
+            }
         }
     }
 }
