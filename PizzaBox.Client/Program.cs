@@ -107,6 +107,14 @@ namespace PizzaBox.Client
                 Console.WriteLine($"Current location set to {client.GetCurrentLocation().Name}");
                 List<Pizza> currentOrder = new List<Pizza>();
 
+                Console.WriteLine("Choose which type of pizza you want (type the number)");
+                Console.WriteLine("1. Pre-set specialty pizza");
+                Console.WriteLine("2. Custom pizza");
+                response1 = Console.ReadLine();
+                bool preset = false;
+                if (response1.StartsWith("1"))
+                    preset = true;
+
             PIZZA:
                 string crust, size;
                 Console.WriteLine();
@@ -135,6 +143,32 @@ namespace PizzaBox.Client
 
                 int toppingcount = 0;
                 List<int> toppings = new List<int>();
+                if(preset)
+                {
+                    Console.WriteLine("Select which specialty pizza you want (enter the number)");
+                    Console.WriteLine("1. Meat lovers (cheese, pepperoni, sausage, ham, beef)");
+                    Console.WriteLine("2. Supreme (cheese, pepperoni, peppers, onions, mushrooms)");
+                    Console.WriteLine("3. Veggie (cheese, peppers, onions, jalapenos, mushrooms)");
+                    Console.WriteLine("4. Hawaiian (cheese, pepperoni, ham, pineapple)");
+                    response1 = Console.ReadLine();
+                    if (response1.StartsWith("1"))
+                    {
+                        toppings = client.SpecialtyToppings("Meat lovers");
+                    }
+                    else if (response1.StartsWith("2"))
+                    {
+                        toppings = client.SpecialtyToppings("Supreme");
+                    }
+                    else if (response1.StartsWith("3"))
+                    {
+                        toppings = client.SpecialtyToppings("Veggie");
+                    }
+                    else
+                    {
+                        toppings = client.SpecialtyToppings("Hawaiian");
+                    }
+                    goto CREATE;
+                }
             TOPPINGS:
                 Console.WriteLine("Select your toppings (one at a time, max is 5)");
                 
@@ -171,7 +205,7 @@ namespace PizzaBox.Client
                     if (response1.StartsWith("y"))
                         goto TOPPINGS;
                 }
-                //client.PrintSelectedToppings(toppings);
+                CREATE:
                 Pizza newPizza = client.CreateNewPizza(crust, size, toppings);
                 Console.WriteLine($"Added pizza with {newPizza.Crust} crust, size {newPizza.Size}, cost ${newPizza.Cost}");
                 Console.WriteLine($"Crust: {newPizza.Crust}");

@@ -233,5 +233,42 @@ namespace PizzaBox.Client
             DbInstance.Instance.Orders.Add(order);
             DbInstance.Instance.SaveChanges();
         }
+
+        public List<int> SpecialtyToppings(string spec)
+        {
+            List<int> toppings = new List<int>();
+            if (spec == "Meat lovers")
+            {
+                toppings.Add(0);
+                toppings.Add(1);
+                toppings.Add(2);
+                toppings.Add(3);
+                toppings.Add(5);
+            }
+            else if (spec == "Supreme")
+            {
+                toppings.Add(0);
+                toppings.Add(1);
+                toppings.Add(7);
+                toppings.Add(8);
+                toppings.Add(10);
+            }
+            else if (spec == "Veggie")
+            {
+                toppings.Add(0);
+                toppings.Add(7);
+                toppings.Add(8);
+                toppings.Add(9);
+                toppings.Add(10);
+            }
+            else //spec == Hawaiian
+            {
+                toppings.Add(0);
+                toppings.Add(1);
+                toppings.Add(3);
+                toppings.Add(6);
+            }
+            return toppings;
+        }
     }
 }
