@@ -92,8 +92,7 @@ namespace PizzaBox.Client
                     goto BEGIN;
                 goto ADMIN;
             }
-            HOME: //Console.WriteLine("Goodbye");
-            
+        HOME:
             Console.WriteLine("Welcome! Please make a selection (type the number)");
             Console.WriteLine("1. Place order");
             Console.WriteLine("2. View order history");
