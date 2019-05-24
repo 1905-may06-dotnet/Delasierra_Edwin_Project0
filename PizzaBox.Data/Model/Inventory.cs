@@ -6,15 +6,9 @@ namespace PizzaBox.Data.Model
     public partial class Inventory
     {
         public int Locationid { get; set; }
-        public int Smallthindough { get; set; }
-        public int Mediumthindough { get; set; }
-        public int Largethindough { get; set; }
-        public int Smalloriginaldough { get; set; }
-        public int Mediumoriginaldough { get; set; }
-        public int Largeoriginaldough { get; set; }
-        public int Smallstuffeddough { get; set; }
-        public int Mediumstuffeddough { get; set; }
-        public int Largestuffeddough { get; set; }
+        public int Smallcrust { get; set; }
+        public int Mediumcrust { get; set; }
+        public int Largecrust { get; set; }
         public int Cheese { get; set; }
         public int Pepperoni { get; set; }
         public int Sausage { get; set; }
