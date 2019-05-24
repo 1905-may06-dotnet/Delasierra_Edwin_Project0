@@ -8,7 +8,7 @@ namespace PizzaBox.Data
     public interface ICrud
     {
         List<Users> GetUsers();
-        Users GetUsers(string id);
+        Users GetUser(string id);
 
         void AddUser(Users u);
         void DeleteUser(Users u);

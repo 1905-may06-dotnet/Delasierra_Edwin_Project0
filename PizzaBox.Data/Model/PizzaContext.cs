@@ -56,17 +56,9 @@ namespace PizzaBox.Data.Model
 
                 entity.Property(e => e.Jalapenos).HasColumnName("jalapenos");
 
-                entity.Property(e => e.Largeoriginaldough).HasColumnName("largeoriginaldough");
+                entity.Property(e => e.Largecrust).HasColumnName("largecrust");
 
-                entity.Property(e => e.Largestuffeddough).HasColumnName("largestuffeddough");
-
-                entity.Property(e => e.Largethindough).HasColumnName("largethindough");
-
-                entity.Property(e => e.Mediumoriginaldough).HasColumnName("mediumoriginaldough");
-
-                entity.Property(e => e.Mediumstuffeddough).HasColumnName("mediumstuffeddough");
-
-                entity.Property(e => e.Mediumthindough).HasColumnName("mediumthindough");
+                entity.Property(e => e.Mediumcrust).HasColumnName("mediumcrust");
 
                 entity.Property(e => e.Mushrooms).HasColumnName("mushrooms");
 
@@ -80,11 +72,7 @@ namespace PizzaBox.Data.Model
 
                 entity.Property(e => e.Sausage).HasColumnName("sausage");
 
-                entity.Property(e => e.Smalloriginaldough).HasColumnName("smalloriginaldough");
-
-                entity.Property(e => e.Smallstuffeddough).HasColumnName("smallstuffeddough");
-
-                entity.Property(e => e.Smallthindough).HasColumnName("smallthindough");
+                entity.Property(e => e.Smallcrust).HasColumnName("smallcrust");
 
                 entity.HasOne(d => d.Location)
                     .WithOne(p => p.Inventory)
